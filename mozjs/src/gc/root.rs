@@ -161,6 +161,7 @@ impl<'a, T> Handle<'a, T> {
     }
 
     pub unsafe fn from_marked_location(ptr: *const T) -> Self {
+        assert!(!ptr.is_null());
         Handle::new(&*ptr)
     }
 
@@ -199,6 +200,7 @@ impl<'a, T> Deref for Handle<'a, T> {
 
 impl<'a, T> MutableHandle<'a, T> {
     pub unsafe fn from_marked_location(ptr: *mut T) -> Self {
+        assert!(!ptr.is_null());
         MutableHandle::new(&mut *ptr)
     }
 
